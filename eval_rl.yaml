@@ -1,0 +1,44 @@
+defaults:
+  - agent: mdp_rl 
+  - override hydra/launcher: submitit_local
+
+# unsupervised exploration
+pretrained_data: sup
+finetuned_data: unsup
+pretrained_mask_type: random 
+pretrained_mask_len: 1
+pretrained_mask_ratio: 0.5
+# task settings
+task: walker_walk
+discount: 0.99
+epsilon: 0.1
+# train settings
+num_grad_steps: 40000
+log_every_steps: 500
+# eval
+eval_every_steps: 5000
+num_eval_episodes: 10
+# snapshot
+snapshot_ts: 300000
+snapshot_base_dir: /data/your_entity_hdd/currmask_data/output
+# dataset
+replay_buffer_dir: /data/your_entity_hdd/currmask_data
+replay_buffer_size: 100000000
+replay_buffer_num_workers: 16
+batch_size: ${agent.batch_size}
+train_val_split: 0.8
+# misc
+seed: 2
+data_seed: 1
+device: cuda
+save_video: true
+use_tb: true
+use_wandb: true
+project: eval-rl
+notes: "your_entity"
+mt: true
+
+
+hydra:
+  run:
+    dir: /data/ytang_hdd/maskdp_data/models/mt/${now:%Y.%m.%d}/${now:%H%M%S}_${agent.name}

@@ -1,0 +1,49 @@
+defaults:
+  - agent: mdp
+  - override hydra/launcher: submitit_local
+
+pretrained_data: sup 
+task: walker_walk
+discount: 0.99
+
+# train settings
+num_grad_steps: 300010
+log_every_steps: 1000
+# eval
+eval_every_steps: 1000
+num_eval_episodes: 10
+eval_mask_type: 'Mixed_masking'
+eval_mask_ratio: 0.5
+# snapshot
+snapshots: [0]
+save_snapshot_freq: 50000
+snapshot_dir: ../../../snapshot/${pretrained_data}
+# resume
+resume: false
+resume_dir: none
+resume_step: 0
+# dataset
+replay_buffer_dir: /data/ytang_hdd/currmask_data
+replay_buffer_size: 100000000
+replay_buffer_num_workers: 16
+batch_size: ${agent.batch_size}
+# misc
+teacher_gamma: 0.2
+seed: 1
+device: cuda
+save_video: truef
+use_tb: true
+use_wandb: true
+project: mdp
+notes: "pretrain"
+exp_name: output
+mask_type: 'random'
+mask_ratio: 0.55
+mask_len: 20
+curr_init_mode: 1
+debug: False
+
+
+hydra:
+  run:
+    dir: ./output/${exp_name}/${now:%Y.%m.%d}/${now:%H%M%S}_${agent.name}

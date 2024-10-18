@@ -1,0 +1,16 @@
+CUDA_VISIBLE_DEVICES=0 python pretrain.py \
+    seed=42 \
+    bonus=0.5 \
+    task=jaco_reach_top_left \
+    agent=ddpg \
+    supervised=True \
+    agent.nstep=1 \
+    agent.batch_size=1024 \
+    obs_type=states \
+    action_repeat=1 \
+    num_train_frames=4000010 \
+    replay_buffer_size=100000 \
+    replay_buffer_num_workers=4 \
+    save_replay_buffer=True \
+    project=supervised_data \
+    use_wandb=True

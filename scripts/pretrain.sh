@@ -1,0 +1,25 @@
+CUDA_VISIBLE_DEVICES=0 python pretrain_ct.py \
+    eval_every_steps=100 \
+    num_eval_episodes=10 \
+    eval_mask_type='Mixed_masking' \
+    agent=mdp \
+    agent.batch_size=384 \
+    agent.transformer_cfg.traj_length=64 \
+    agent.transformer_cfg.loss="total" \
+    agent.transformer_cfg.n_embd=256 \
+    agent.transformer_cfg.n_head=4 \
+    agent.transformer_cfg.n_enc_layer=3 \
+    agent.transformer_cfg.n_dec_layer=2 \
+    agent.transformer_cfg.norm='l2' \
+    num_grad_steps=300010 \
+    task=jaco_reach_top_left \
+    snapshot_dir=snapshot \
+    resume=False \
+    exp_name='final_mt'\
+    project=final_mt_mdp \
+    use_wandb=True \
+    replay_buffer_dir=/data/your_entity_hdd/currmask_data\
+    pretrained_data='sup' \
+    teacher_gamma=0.2 \
+    mask_type='CurrMask' #['random','MixedInv_4p',''MixedProg_4p','random','Mixed_masking']
+

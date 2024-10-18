@@ -1,0 +1,17 @@
+CUDA_VISIBLE_DEVICES=0 python pretrain.py \
+    seed=42 \
+    bonus=0.0 \
+    task=jaco_reach_top_left \
+    domain=walker \
+    supervised=false \
+    agent=proto \
+    agent.batch_size=1024 \
+    agent.nstep=1 \
+    obs_type=states \
+    action_repeat=1 \
+    num_train_frames=2000010 \
+    replay_buffer_size=100000 \
+    replay_buffer_num_workers=4 \
+    save_replay_buffer=True \
+    project=unsupervised_data \
+    use_wandb=True 
