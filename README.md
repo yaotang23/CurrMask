@@ -5,7 +5,7 @@
 This codebase is the official implementation of CurrMask.
 
 ## Get Started
-#### Environments
+### Environments
 
 Install [MuJoCo](http://www.mujoco.org/):
 
@@ -20,7 +20,7 @@ conda env create -f environment.yaml
 conda activate currmask
 ```
 
-#### Collect data
+### Collect data
 
 You can follow the example scripts in ``data_collection/scripts`` and collect offline data as described in our paper. You can also collect your own dataset following the instructions:
 ```
@@ -30,7 +30,7 @@ bash scripts/sup.sh #To collect supervised data
 bash scripts/unsup.sh #To collect unsupervised data
 ```
 
-#### Pre-train and Eval
+### Pre-train and Eval
 
 We provide example scritps in folder ``scripts`` to pre-train or evaluate the model with skill prompting, goal-conditioned planning and offline RL. An example is:
 ```
